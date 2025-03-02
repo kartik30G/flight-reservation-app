@@ -20,6 +20,11 @@ Before setting up the application, ensure you have the following installed on yo
 - **🌐 Node.js and npm**
 - **🌍 Apache2 Web Server**
 
+## Clone the Repository
+```sh
+git clone https://github.com/shubhamkalsait/flight-reservation-app.git
+```
+
 ## Database Setup Instructions
 
 ### Step 1: Update Package List
@@ -46,6 +51,12 @@ mysql -uroot -p
 >> FLUSH PRIVILEGES;
 ```
 
+### Step 5: Import Database
+```sh
+cd flight-reservation-app/
+mysql -uroot -p flightdb < flightdb.sql
+```
+
 ## Backend Setup Instructions
 
 ### Step 1: Install Java (OpenJDK 17)
@@ -58,10 +69,7 @@ apt install openjdk-17-jdk -y
 apt install maven -y
 ```
 
-### Step 3: Clone the Repository
-```sh
-git clone https://github.com/shubhamkalsait/flight-reservation-app.git
-```
+
 
 ### Step 4: Navigate to the Backend Directory
 ```sh
@@ -125,3 +133,10 @@ systemctl start apache2
 cp -rf dist/* /var/www/html/
 ```
 
+
+## Have fun with your application
+```sh
+URL: http://<IP>:80
+user: admin
+pass: admin123
+```
