@@ -17,6 +17,8 @@ Before setting up the application, ensure you have the following installed on yo
 - **☕ OpenJDK 17**
 - **🛠️ Maven**
 - **📂 Git**
+- **🌐 Node.js and npm**
+- **🌍 Apache2 Web Server**
 
 ## Database Setup Instructions
 
@@ -35,13 +37,13 @@ apt install mysql-server -y
 mysql_secure_installation
 ```
 
-### Step 4: Login to MySQL and Create Database
+### Step 4: Login to MySQL and Create Database 
 ```sh
 mysql -uroot -p
 >> CREATE DATABASE flightdb;
 >> CREATE USER "DBUSER" IDENTIFIED BY "DBPASSWORD";
 >> GRANT ALL PRIVILEGES ON flightdb.* TO "DBUSER";
->> FLUSH PRVILEGES;
+>> FLUSH PRIVILEGES;
 ```
 
 ## Backend Setup Instructions
@@ -71,17 +73,55 @@ cd flight-reservation-app/Backend/FlightReservationApp/
 export DATASOURCE_URL="jdbc:mysql://localhost:3306/flightdb"
 export DATASOURCE_USER="DBUSER"
 export DATASOURCE_PASSWORD="DBPASSWORD"
+export FRONTEND_URL="http://localhost:80"
 ```
 
-### Step 6: Build the Application
+### Step 6: Build the Backend Application
 ```sh
 mvn clean package
 ```
 
-## Running the Application
-Once the build is successful, you can run the application using:
+### Step 7: Running the Application
+Once the build is successful, you can run the backend application using:
 ```sh
 java -jar target/flight-reservation-app.jar
 ```
 
+## Frontend Setup Instructions
+
+### Step 1: Install Node.js and npm (for Frontend)
+```sh
+apt install nodejs npm -y
+```
+
+### Step 2: Navigate to the Frontend Directory
+```sh
+cd Frontend/
+```
+
+### Step 3: Set Backend API URL
+```sh
+export VITE_API_URL=http://<BACKEND-IP>:8080
+```
+
+### Step 4: Install Frontend Dependencies
+```sh
+npm install
+```
+
+### Step 5: Build the Frontend Application
+```sh
+npm run build
+```
+
+### Step 6: Install and Start Apache Web Server
+```sh
+apt install apache2 -y
+systemctl start apache2
+```
+
+### Step 7: Deploy Frontend to Apache Server
+```sh
+cp -rf dist/* /var/www/html/
+```
 
